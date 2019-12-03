@@ -21,13 +21,42 @@ public class Day02 {
             System.err.println("Error - could not read input");
         }
 
-        opCodeProcessor.replaceAtPositionWithValue(1, 12);
-        opCodeProcessor.replaceAtPositionWithValue(2, 2);
+        OpCodeProcessor newProcessor = new OpCodeProcessor(opCodeProcessor);
 
-        while (!opCodeProcessor.finished()) {
-            opCodeProcessor.runCommand();
+        newProcessor.replaceAtPositionWithValue(1, 12);
+        newProcessor.replaceAtPositionWithValue(2, 2);
+
+        System.out.println("Part 1 answer is: " + computeAnswer(newProcessor));
+        findMatchingProcessor(opCodeProcessor);
+    }
+
+    private static int computeAnswer(OpCodeProcessor processor) {
+        while (!processor.finished()) {
+            processor.runCommand();
         }
+        return processor.firstElement();
+    }
 
-        System.out.println("Part 1 answer is: " + opCodeProcessor.firstElement());
+    private static void findMatchingProcessor(OpCodeProcessor originalProcessor) {
+        int desiredAnswer = 19690720;
+        boolean foundAnswer = false;
+        while (!foundAnswer) {
+            for (int noun = 0; noun <= 99; noun++) {
+                for (int verb = 0; verb <= 99; verb++) {
+                    OpCodeProcessor newProcessor = new OpCodeProcessor(originalProcessor);
+                    // OK, let's compute our answer.  Does it match the target?
+                    // don't forget to replace with the noun and verb!
+                    newProcessor.replaceAtPositionWithValue(1, noun);
+                    newProcessor.replaceAtPositionWithValue(2, verb);
+                    int answer = computeAnswer(newProcessor);
+                    if (answer == desiredAnswer) {
+                        // we found it!
+                        foundAnswer = true;
+                        System.out.println("Noun = " + noun + " Verb = " + verb + " Answer = " + answer + " Just right!");
+                        System.out.println("Part 2 answer = 100 * Noun + Verb = " + (100 * noun + verb));
+                    }
+                }
+            }
+        }
     }
 }

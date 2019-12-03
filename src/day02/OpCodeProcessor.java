@@ -2,6 +2,7 @@ package day02;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OpCodeProcessor {
     private int position = 0;
@@ -9,9 +10,14 @@ public class OpCodeProcessor {
 
     public OpCodeProcessor() {}
 
+    public OpCodeProcessor(OpCodeProcessor originalProcessor) {
+        position = originalProcessor.position;
+        opcodes = new ArrayList<>(originalProcessor.opcodes);
+    }
+
     public void addElement(int element) {
         opcodes.add(element);
-        System.out.println("OpCodeProcessor element count after adding " + element + " is " + opcodes.size());
+//        System.out.println("OpCodeProcessor element count after adding " + element + " is " + opcodes.size());
     }
 
     public int firstElement() {
