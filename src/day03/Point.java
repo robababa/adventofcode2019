@@ -21,12 +21,18 @@ public class Point {
         return String.format("(%d,%d)", x, y);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!(o instanceof Point)) {
             return false;
         }
         Point otherPoint = (Point) o;
         return otherPoint.x == x && otherPoint.y == y;
+    }
+
+    @Override
+    public int hashCode() {
+        return x * 10000 + y;
     }
 
     public int distance() { return Math.abs(x) + Math.abs(y); }

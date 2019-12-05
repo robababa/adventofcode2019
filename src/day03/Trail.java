@@ -1,7 +1,9 @@
 package day03;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Trail {
@@ -9,6 +11,16 @@ public class Trail {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public Map<Point, Integer> getSteps() {
+        HashMap<Point, Integer> returnValue = new HashMap<>();
+        int i = 0;
+        for (Point p : points) {
+            returnValue.putIfAbsent(p, i);
+            i += 1;
+        }
+        return returnValue;
     }
 
     public Trail() {
