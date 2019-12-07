@@ -9,6 +9,7 @@ public class Day06 {
         readInput(args[0], constellation);
         constellation.computeOrbits();
         System.out.println("Part 1 total orbits: " + constellation.totalDirectAndIndirectOrbits());
+        System.out.println("Part 2 transfer count: " + constellation.transferCount("YOU", "SAN"));
     }
 
     private static void readInput(String filename, Constellation constellation) {

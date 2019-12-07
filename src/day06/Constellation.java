@@ -43,23 +43,22 @@ public class Constellation {
         return orbits.values().stream().map(Orbit::getDepth).mapToInt(i -> i).sum();
     }
 
-    public void printOrbits() {
-        orbits.forEach((k, v) -> System.out.println(k + " orbits " + v.getBigObject() + " with depth " + v.getDepth() ));
+    private Set<String> orbitChain(String planet) {
+        Set<String> chain = new HashSet<>();
+        int parentPlanetCount = orbits.get(planet).getDepth();
+        String currentPlanet = new String(planet);
+        for (int i = 0; i < parentPlanetCount; i++) {
+            String nextPlanet = orbits.get(currentPlanet).getBigObject();
+            chain.add(nextPlanet);
+            currentPlanet = nextPlanet;
+        }
+        return chain;
     }
 
-    public Set<String> getPlanets() {
-        return planets;
-    }
-
-    public void setPlanets(Set<String> planets) {
-        this.planets = planets;
-    }
-
-    public Map<String, Orbit> getOrbits() {
-        return orbits;
-    }
-
-    public void setOrbits(Map<String, Orbit> orbits) {
-        this.orbits = orbits;
+    public int transferCount(String planetA, String planetB) {
+        // the number of transfers equals the sum of their depths, minus twice their common ancestors
+        Set<String> commonAncestors = orbitChain(planetA);
+        commonAncestors.retainAll(orbitChain(planetB));
+        return orbits.get(planetA).getDepth() + orbits.get(planetB).getDepth() - 2 * commonAncestors.size();
     }
 }
