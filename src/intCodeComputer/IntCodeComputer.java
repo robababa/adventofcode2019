@@ -1,14 +1,14 @@
-package day05;
+package intCodeComputer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpCodeProcessor {
-    private int input = 0;
+public class IntCodeComputer {
+    private int input;
     private int position = 0;
     private List<Integer> opcodes = new ArrayList<>();
 
-    public OpCodeProcessor(Integer input) {
+    public IntCodeComputer(Integer input) {
         this.input = input;
     }
 

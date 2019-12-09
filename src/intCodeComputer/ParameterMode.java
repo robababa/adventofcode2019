@@ -1,4 +1,4 @@
-package day05;
+package intCodeComputer;
 
 public enum ParameterMode {
     POSITION,IMMEDIATE
