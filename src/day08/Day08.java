@@ -13,8 +13,8 @@ public class Day08 {
 
         } catch (Exception ignored) {
         }
-//        System.out.println("input is: " + input);
-        Image image = new Image(input, 25, 6);
+
+        Image image = new Image(input, Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 
         int layerWithLeastZeros = image.layerWithLeastZeros();
 
@@ -22,5 +22,9 @@ public class Day08 {
                 layerWithLeastZeros
                 + ", product is " +
                 image.onesAndTwosProductInLayer(layerWithLeastZeros));
+
+        Image finalImage = image.resultingImage();
+        System.out.println("Part 2 answer:");
+        finalImage.printImage();
     }
 }
