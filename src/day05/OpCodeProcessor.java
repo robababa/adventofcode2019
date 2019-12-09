@@ -23,7 +23,8 @@ public class OpCodeProcessor {
     }
 
     private ParameterMode determineParameterMode(int operation, int argumentPosition) throws Exception {
-        long modeValue = operation / Math.round(Math.pow(10 , argumentPosition)) % 10;
+        // argument 1 is in 100s position, argument 2 in 1000s position
+        long modeValue = operation / Math.round(Math.pow(10 , argumentPosition + 1)) % 10;
         if (modeValue == 0) {
             return ParameterMode.POSITION;
         } else if (modeValue == 1) {
@@ -84,13 +85,9 @@ public class OpCodeProcessor {
         }
         int operation = opcodes.get(position);
 
-        if (operation == 99) {
-            return;
-        }
-
         System.out.println(String.format("Applying operation %d at position %d", operation, position));
 
-        switch (operation % 10) {
+        switch (operation % 100) {
             case 1:
                 applyOperation1(operation);
                 break;
