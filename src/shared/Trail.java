@@ -1,4 +1,6 @@
-package day03;
+package shared;
+
+import shared.Point;
 
 import java.util.ArrayList;
 import java.util.HashMap;

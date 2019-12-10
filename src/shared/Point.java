@@ -1,4 +1,4 @@
-package day03;
+package shared;
 
 public class Point {
     private int x;

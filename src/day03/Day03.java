@@ -1,8 +1,11 @@
 package day03;
 
+import shared.Motion;
+import shared.Point;
+import shared.Trail;
+
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Day03 {
     public static void main(String[] args) {
